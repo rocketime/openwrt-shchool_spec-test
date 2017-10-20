@@ -38,14 +38,18 @@ define Package/$(PKG_NAME)/postinst
 	( . /etc/uci-defaults/luci-mentohust ) && rm -f /etc/uci-defaults/luci-mentohust
 	chmod 755 /etc/init.d/mentohust >/dev/null 2>&1
 	/etc/init.d/mentohust enable >/dev/null 2>&1
+	chmod 755 /etc/init.d/mentohust >/dev/null 2>&1
+	/etc/init.d/mentohust enable >/dev/null 2>&1
 	exit 0
+	
 }
+	
 endef
 
 define Package/$(PKG_NAME)/install
 	$(CP) ./root/* $(1)
 	$(INSTALL_DIR) $(1)/usr/lib/lua/luci/i18n $(1)/usr/lib/lua/luci
-	#$(PO2LMO) ./po/zh-cn/mentohust.po $(1)/usr/lib/lua/luci/i18n/mentohust.zh-cn.lmo
+#	$(PO2LMO) ./po/zh-cn/mentohust.po $(1)/usr/lib/lua/luci/i18n/mentohust.zh-cn.lmo
 	$(CP) ./luasrc/* $(1)/usr/lib/lua/luci
 endef
 
