@@ -7,11 +7,12 @@ PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)
 include $(INCLUDE_DIR)/package.mk
 
 define Package/luci-app-oh3c
-  SECTION:=net
-  CATEGORY:=Network
+  SECTION:=luci
+  CATEGORY:=LuCI
+  SUBMENU:=3. Applications
   TITLE:=H3C INODE CLIENT FOR OPENWRT WRITTEN
   URL:=https://github.com/fjkfwz/luci-app-oh3c
-  DEPENDS:=python-mini
+  DEPENDS:=+python-mini
   MAINTAINER:= RiceLyn <fjkfwz@gmail.com>
 endef
 

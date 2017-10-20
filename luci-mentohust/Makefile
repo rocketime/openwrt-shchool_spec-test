@@ -21,7 +21,7 @@ define Package/$(PKG_NAME)
   CATEGORY:=LuCI
   SUBMENU:=3. Applications
   DEPENDS:=
-  TITLE:=luci-app-mentohust                         
+  TITLE:=luci app fot mentohust                         
   PKGARCH:=all
 endef
 
