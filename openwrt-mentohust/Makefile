@@ -14,10 +14,9 @@ PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_SOURCE_URL:=https://github.com/rocketime/mentohust.git
+PKG_SOURCE_URL:=https://github.com/HustLion/mentohust.git
 PKG_SOURCE_PROTO:=git
-#PKG_SOURCE_VERSION:=595aa096f359e4bbf077ac0de3d10aa24882c568
-
+PKG_SOURCE_VERSION:=2f9ef2d6df5d95c0faa2e542f1cb77114824e697
 PKG_LICENSE:=GPLv3
 
 PKG_BUILD_PARALLEL:=1
@@ -31,7 +30,7 @@ define Package/$(PKG_NAME)
 	CATEGORY:=Network
 	DEPENDS:=+libpcap +libintl +libiconv
 	TITLE:=Open-source alternative to rjsupplicant
-	URL:=https://github.com/rocketime/mentohust.git
+#	URL:=https://github.com/rocketime/mentohust.git
 
 endef
 

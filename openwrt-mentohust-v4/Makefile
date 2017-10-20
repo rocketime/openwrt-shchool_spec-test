@@ -16,7 +16,7 @@ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
 PKG_SOURCE_URL:=https://github.com/rocketime/mentohust-v4.git
 PKG_SOURCE_PROTO:=git
-#PKG_SOURCE_VERSION:=595aa096f359e4bbf077ac0de3d10aa24882c568
+PKG_SOURCE_VERSION:=857f5a112213393cf6fb19607fe9da61284c5a50
 
 PKG_LICENSE:=GPLv3
 
@@ -59,19 +59,19 @@ MAKE_FLAGS+= \
 	OFLAGS=""
 
 define Package/$(PKG_NAME)/conffiles
-/etc/$(PKG_NAME).conf
+/etc/$mentohust.conf
 endef
 
 define Package/$(PKG_NAME)/install
 	mkdir -p $(PKG_INSTALL_DIR)/usr/bin
 	mkdir -p $(PKG_INSTALL_DIR)/etc
-	$(CP) $(PKG_BUILD_DIR)/src/$(PKG_NAME) $(PKG_INSTALL_DIR)/usr/bin/$(PKG_NAME)
-	$(CP) $(PKG_BUILD_DIR)/src/$(PKG_NAME).conf $(PKG_INSTALL_DIR)/etc/$(PKG_NAME).conf
+	$(CP) $(PKG_BUILD_DIR)/src/mentohust $(PKG_INSTALL_DIR)/usr/bin/mentohust
+	$(CP) $(PKG_BUILD_DIR)/src/mentohust.conf $(PKG_INSTALL_DIR)/etc/mentohust.conf
 	$(INSTALL_DIR) $(1)/usr/sbin
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/$(PKG_NAME) $(1)/usr/sbin/
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/mentohust $(1)/usr/sbin/
 	chmod 755 $(1)/usr/sbin/
 	$(INSTALL_DIR) $(1)/etc
-	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/etc/$(PKG_NAME).conf $(1)/etc/
+	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/etc/mentohust.conf $(1)/etc/
 endef
 
 $(eval $(call BuildPackage,$(PKG_NAME)))
