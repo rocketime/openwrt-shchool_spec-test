@@ -8,13 +8,13 @@
 
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=mentohust
+PKG_NAME:=mentohust-v4
 PKG_VERSION:=0.4.17
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_SOURCE_URL:=https://github.com/rocketime/mentohust.git
+PKG_SOURCE_URL:=https://github.com/rocketime/mentohust-v4.git
 PKG_SOURCE_PROTO:=git
 #PKG_SOURCE_VERSION:=595aa096f359e4bbf077ac0de3d10aa24882c568
 
@@ -31,7 +31,7 @@ define Package/$(PKG_NAME)
 	CATEGORY:=Network
 	DEPENDS:=+libpcap +libintl +libiconv
 	TITLE:=Open-source alternative to rjsupplicant
-	URL:=https://github.com/rocketime/mentohust.git
+	URL:=https://github.com/rocketime/mentohust-v4.git
 
 endef
 
