@@ -8,15 +8,16 @@
 
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=mentohust
-PKG_VERSION:=0.4.17
+PKG_NAME:=mentohust-vn
+PKG_VERSION:=0.n.7
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_SOURCE_URL:=https://github.com/HustLion/mentohust.git
+PKG_SOURCE_URL:=https://github.com/rocketime/mentohust-v.git
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=2f9ef2d6df5d95c0faa2e542f1cb77114824e697
+PKG_SOURCE_VERSION:=003907df2dbf72f3effe00c4f8b48f19681ebb0f
+
 PKG_LICENSE:=GPLv3
 
 PKG_BUILD_PARALLEL:=1
@@ -30,7 +31,7 @@ define Package/$(PKG_NAME)
 	CATEGORY:=Network
 	DEPENDS:=+libpcap +libintl +libiconv
 	TITLE:=Open-source alternative to rjsupplicant
-#	URL:=https://github.com/rocketime/mentohust.git
+	URL:=https://github.com/rocketime/mentohust-v4.git
 
 endef
 
@@ -58,19 +59,19 @@ MAKE_FLAGS+= \
 	OFLAGS=""
 
 define Package/$(PKG_NAME)/conffiles
-/etc/$(PKG_NAME).conf
+/etc/$mentohust.conf
 endef
 
 define Package/$(PKG_NAME)/install
 	mkdir -p $(PKG_INSTALL_DIR)/usr/bin
 	mkdir -p $(PKG_INSTALL_DIR)/etc
-	$(CP) $(PKG_BUILD_DIR)/src/$(PKG_NAME) $(PKG_INSTALL_DIR)/usr/bin/$(PKG_NAME)
-	$(CP) $(PKG_BUILD_DIR)/src/$(PKG_NAME).conf $(PKG_INSTALL_DIR)/etc/$(PKG_NAME).conf
+	$(CP) $(PKG_BUILD_DIR)/src/mentohust $(PKG_INSTALL_DIR)/usr/bin/mentohust
+	$(CP) $(PKG_BUILD_DIR)/src/mentohust.conf $(PKG_INSTALL_DIR)/etc/mentohust.conf
 	$(INSTALL_DIR) $(1)/usr/sbin
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/$(PKG_NAME) $(1)/usr/sbin/
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/mentohust $(1)/usr/sbin/
 	chmod 755 $(1)/usr/sbin/
 	$(INSTALL_DIR) $(1)/etc
-	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/etc/$(PKG_NAME).conf $(1)/etc/
+	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/etc/mentohust.conf $(1)/etc/
 endef
 
 $(eval $(call BuildPackage,$(PKG_NAME)))
