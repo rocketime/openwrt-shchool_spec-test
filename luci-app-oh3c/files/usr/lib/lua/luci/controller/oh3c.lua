@@ -1,6 +1,10 @@
 module("luci.controller.oh3c", package.seeall)
 
 function index()
-    entry({"admin", "network", "oh3c"}, cbi("oh3c/usermgr"), "OH3C", 30).dependent=false
-
+	if nixio.fs.access("/etc/config/h3c") then
+	local page 
+	page = entry({"admin", "services", "h3c"}, cbi("h3c"), _("h3c"), 30)
+	page.i18n = "h3c"
+	page.dependent = false
+	end
 end

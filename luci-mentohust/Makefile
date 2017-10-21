@@ -38,8 +38,7 @@ define Package/$(PKG_NAME)/postinst
 	( . /etc/uci-defaults/luci-mentohust ) && rm -f /etc/uci-defaults/luci-mentohust
 	chmod 755 /etc/init.d/mentohust >/dev/null 2>&1
 	/etc/init.d/mentohust enable >/dev/null 2>&1
-	chmod 755 /etc/init.d/mentohust >/dev/null 2>&1
-	/etc/init.d/mentohust enable >/dev/null 2>&1
+	
 	exit 0
 	
 }
