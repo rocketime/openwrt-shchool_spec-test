@@ -5,7 +5,7 @@ ful = SimpleForm("upload", translate("Upload"), nil)
 ful.reset = false
 ful.submit = false
 
-sul = ful:section(SimpleSection, "", translate("Upload data file to '/etc/mentohust/'" .. "<br />" .. 
+sul = ful:section(SimpleSection, "", translate("Upload data file to '/etc/mentohust/'" .. "<br />" .. " " .. "<br />" .. 
 									"Upload 8021x.exe,W32N55.dll,SuConfig.dat and data.mpf if needed "))
 fu = sul:option(FileUpload, "")
 fu.template = "mentohust/upload"
