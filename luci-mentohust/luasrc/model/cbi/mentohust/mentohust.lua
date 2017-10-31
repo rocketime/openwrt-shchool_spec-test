@@ -74,7 +74,7 @@ t=s:option(ListValue, "DaemonMode", translate("是否后台运行"),translate("�
 t:value("1", translate("1(是，关闭输出)"))
 t:value("2", translate("2(是，保留输出)"))
 t:value("3", translate("3(是，输出到文件)"))
-t.default = "1"
+t.default = "3"
 
 s:option(Value, "Version", translate("客户端版本号"),translate("默认0.00表示兼容xrgsu")).default="0.00"
 
