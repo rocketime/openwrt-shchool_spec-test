@@ -8,11 +8,26 @@ Author:a1ive
 module("luci.controller.mentohust", package.seeall)
 
 function index()
+	if not nixio.fs.access("/etc/config/mentohust") then
+		return
+	end
+	
+local page = entry({"admin", "services", "mentohust"},
+		alias("admin", "services", "mentohust", "general"),
+		_("MentoHUST"), 10)
 
-	if nixio.fs.access("/etc/config/mentohust") then
-	local page 
-	page = entry({"admin", "services", "mentohust"}, cbi("mentohust"), _("MentoHUST"), 30)
+	entry({"admin", "services", "mentohust", "general"},
+		cbi("mentohust"),
+		_("General Settings"), 10)
+		
+	entry({"admin", "services", "mentohust", "upload data files"},
+		cbi("upload"),
+		_("Upload Data Files"), 20)
+	
+	
+	
+	
 	page.i18n = "mentohust"
 	page.dependent = true
-	end
+	
 end
