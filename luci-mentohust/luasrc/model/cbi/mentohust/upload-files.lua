@@ -76,5 +76,11 @@ btnrm.render = function(self, section, scope)
 	Button.render(self, section, scope)
 end
 
+btnrm.write = function(self, section)
+ 	local v = fs.unlink("/etc/mentohust/" .. fs.basename(inits[section].name))
+ 	if v then table.remove(inits, section) end
+ 	return v
+end
+ 
 
 return ful, form
