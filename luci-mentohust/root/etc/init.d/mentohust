@@ -1,10 +1,16 @@
 #!/bin/sh /etc/rc.common
 
-START=55
+START=99
 STOP=10
 
 start()
 {
+if [ $(uci get mentohust.@option[0].rproxy) ]; then
+	modprobe rproxy 2>/dev/null
+else
+	rmmod rproxy 2>/dev/null
+fi
+
 if [ $(uci get mentohust.@option[0].enable) ] ;
 then
 	echo [MentoHUST] > /etc/mentohust.conf
@@ -43,6 +49,7 @@ stop()
 {
 sync
 mentohust -k >/dev/null 2>&1
+rmmod rproxy 2>/dev/null
 }
 
 restart()

@@ -17,11 +17,11 @@ local page = entry({"admin", "services", "mentohust"},
 		_("MentoHUST"), 10)
 
 	entry({"admin", "services", "mentohust", "general"},
-		cbi("mentohust"),
+		cbi("mentohust/mentohust"),
 		_("General Settings"), 10)
 		
-	entry({"admin", "services", "mentohust", "upload data files"},
-		cbi("upload"),
+	entry({"admin", "services", "mentohust", "upload-files"},
+		cbi("mentohust/upload-files"),
 		_("Upload Data Files"), 20)
 	
 	

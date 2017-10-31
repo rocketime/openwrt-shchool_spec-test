@@ -8,6 +8,7 @@ Author:a1ive
 require("luci.tools.webadmin")
 
 m = Map("mentohust", translate("MentoHUST"), translate("锐捷、赛尔认证客户端."))
+
 function m.on_commit(self)
 os.execute("/etc/init.d/mentohust start")
 end
@@ -19,6 +20,7 @@ s:option(Flag, "enable", translate("启用MentoHUST"), translate("启用或禁�
 
 s:option(Flag, "boot", translate("开机自启"), translate("开机时自动启动mentohust")).default="0"
 
+s:option(Flag, "rproxy", translate("Router Proxy"), translate("router proxy to fake single client")).default="0"
 
 s = m:section(TypedSection, "mentohust", translate("设置mentohust"),translate("以下选项为mentohust的参数"))
 s.anonymous = true
