@@ -5,16 +5,18 @@ ful = SimpleForm("upload", translate("Upload"), nil)
 ful.reset = false
 ful.submit = false
 
-sul = ful:section(SimpleSection, "", translate("Upload data file to '/etc/mentohust/'" .. "<br />" .. " " .. "<br />" .. 
+sul = ful:section(SimpleSection, "", translate("Upload data file to '/tmp/mentohust/'" .. "<br />" .. " " .. "<br />" .. 
 									"Upload 8021x.exe,W32N55.dll,SuConfig.dat and data.mpf if needed "))
+
+---upload---
+
 fu = sul:option(FileUpload, "")
 fu.template = "mentohust/upload"
 um = sul:option(DummyValue, "", nil)
 um.template = "mentohust/dvalue"
 
-
 local dir, fd
-dir = "/etc/mentohust/"
+dir = "/tmp/mentohust/"
 fs.mkdir(dir)
 http.setfilehandler(
 	function(meta, chunk, eof)
@@ -32,7 +34,7 @@ http.setfilehandler(
 		if eof and fd then
 			fd:close()
 			fd = nil
-			um.value = translate("File saved to") .. ' "/etc/mentohust/' .. meta.file .. '"'
+			um.value = translate("File saved to") .. ' "/tmp/mentohust/' .. meta.file .. '"'
 		end
 	end
 )
