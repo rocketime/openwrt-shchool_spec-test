@@ -12,6 +12,7 @@ fu.template = "mentohust/upload"
 um = sul:option(DummyValue, "", nil)
 um.template = "mentohust/dvalue"
 
+
 local dir, fd
 dir = "/etc/mentohust/"
 fs.mkdir(dir)
@@ -61,7 +62,26 @@ if files then
 	end
 end
 
-form = SimpleForm("filelist", translate("Upload file list"), nil)
+local initst, it, attrt = {}, 1
+local files = fs.dir("/tmp/mentohust/")
+if files then
+	for f in files do
+		attrt = fs.stat("/tmp/mentohust/" .. f)
+		if attrt then
+			initst[it] = {}
+			initst[it].name = f
+			initst[it].mtime = os.date("%Y-%m-%d %H:%M:%S", attrt.mtime)
+			initst[it].modestr = attrt.modestr
+			initst[it].size = tostring(attrt.size)
+			initst[it].remove = 0
+			initst[it].install = false
+			it = it + 1
+		end
+	end
+end
+---form-----
+
+form = SimpleForm("filelist", translate("Files Uploaded"), nil)
 form.reset = false
 form.submit = false
 
@@ -81,6 +101,42 @@ btnrm.write = function(self, section)
  	if v then table.remove(inits, section) end
  	return v
 end
- 
 
-return ful, form
+----ff --
+
+ff = SimpleForm("upload", translate("Files Waiting Upload"), nil)
+ff.reset = false
+ff.submit = false 
+tb = ff:section(Table, initst)
+nm = tb:option(DummyValue, "name", translate("File name"))
+mt = tb:option(DummyValue, "mtime", translate("Modify time"))
+ms = tb:option(DummyValue, "modestr", translate("Mode string"))
+sz = tb:option(DummyValue, "size", translate("Size"))
+btnrmt = tb:option(Button, "remove", translate("Remove"))
+
+btnrmt.render = function(self, section, scope)
+	self.inputstyle = "remove"
+	Button.render(self, section, scope)
+end
+
+btnrmt.write = function(self, section)
+ 	local vt = fs.unlink("/tmp/mentohust/" .. fs.basename(initst[section].name))
+ 	if vt then table.remove(initst, section) end
+ 	return vt
+end
+
+btncf = tb:option(Button, "action", translate("Action"))
+
+btncf.render = function(self, section, scope)
+	self.title = translate("Confirm Upload")
+	self.inputstyle = "apply"
+	Button.render(self, section, scope)
+end
+
+btncf.write = function(self, section)
+ 	os.execute("mv /tmp/mentohust/"..fs.basename(initst[section].name).." /etc/mentohust/ 2>>/tmp/web_shell_output 1>>/tmp/web_shell_output &" )
+	return ture
+	
+end
+
+return ful, ff, form
