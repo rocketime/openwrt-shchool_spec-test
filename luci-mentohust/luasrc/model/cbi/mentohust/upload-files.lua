@@ -5,8 +5,8 @@ ful = SimpleForm("upload", translate("Upload"), nil)
 ful.reset = false
 ful.submit = false
 
-sul = ful:section(SimpleSection, "", translate("Upload data file to '/tmp/mentohust/'" .. "<br />" .. " " .. "<br />" .. 
-									"Upload 8021x.exe,W32N55.dll,SuConfig.dat and data.mpf if needed "))
+sul = ful:section(SimpleSection, "", translate("Upload data file to '/etc/mentohust/'" .. "<br />" .. " " .. "<br />" .. 
+									"Upload 8021x.exe,W32N55.dll,SuConfig.dat and data.mpf if necessery "))
 
 ---upload---
 
@@ -114,7 +114,7 @@ nm = tb:option(DummyValue, "name", translate("File name"))
 mt = tb:option(DummyValue, "mtime", translate("Modify time"))
 ms = tb:option(DummyValue, "modestr", translate("Mode string"))
 sz = tb:option(DummyValue, "size", translate("Size"))
-btnrmt = tb:option(Button, "remove", translate("Remove"))
+btnrmt = tb:option(Button, "remove1", translate("Remove"))
 
 btnrmt.render = function(self, section, scope)
 	self.inputstyle = "remove"
@@ -137,6 +137,7 @@ end
 
 btncf.write = function(self, section)
  	os.execute("mv /tmp/mentohust/"..fs.basename(initst[section].name).." /etc/mentohust/ 2>>/tmp/web_shell_output 1>>/tmp/web_shell_output &" )
+	sul = ful:section(SimpleSection, "", translate("Uploading. Plase wait few minutes then reload this page manually"))
 	return ture
 	
 end
